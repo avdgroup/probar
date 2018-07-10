@@ -1,0 +1,6 @@
+mixin screen(gradient)
+  +b.screen&attributes(attributes)
+    if gradient
+      +e.IMG(src='assets/images/gradient.png' data-delay='200').gradient.is-anim
+    .container
+      block

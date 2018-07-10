@@ -1,0 +1,30 @@
+mixin header()
+  +b.header&attributes(attributes)
+    +e.top
+      .container
+        +e.top-logo
+          img(src='assets/images/logo.png')
+    +e.middle        
+    +e.bottom
+      .container
+        +e.side-block
+          +e.A(href='/').side-logo
+            img(src='assets/images/logo2.jpg')
+        +e.nav
+          +e.menu
+            +e.menu-item
+              +e.A(href='#').link Все о зубах
+            +e.menu-item
+              +e.A(href='https://www.proplan.ru/dog/care/probar/').link Подробнее о продукте
+            +e.menu-item
+              +e.A(href='https://shop.purina.ru/sobaki/lakomstva').link Купить
+            +e.menu-item
+              +e.A(href='https://www.proplan.ru/dog/product/?page=1&consistency=7').link Все лакомства
+          //+e.share
+            //+e.A(href='#').link._share Поделиться
+            +e.A(href='#').social-btn
+              +icon('facebook').social-icon._fb
+            +e.A(href='#').social-btn
+              +icon('vk').social-icon._vk
+          +e.burger
+            span

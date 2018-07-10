@@ -1,0 +1,450 @@
+.carousel {
+  display: block;
+  
+  &__platform {
+    width: 1198px;
+    height: 341px;
+    margin: 0 auto;
+    position: relative;
+    font-size: 0;
+    transition: opacity 1s ease, transform 1s ease;
+    
+    @include screen('desktop') {
+      margin: 0 calc((100% - 1198px)/2);
+    }
+    
+    &.is-anim {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+  }
+  
+  &__images {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 100px;
+    transition: opacity 1s ease, transform 1s ease;
+    transform-origin: left;
+    width: 672px;
+    height: 314px;
+    
+    @include screen('desktop') {
+      bottom: 50px;
+      width: 551px;
+      height: 257px;
+    }
+    
+    @include screen('tablet') {
+      bottom: 77px;
+      width: 316px;
+      height: 150px;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+      transform: scale(.9) translateX(-50%);
+    }
+  }
+  
+  &__scene {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 672px;
+    height: 314px;
+    transition: opacity .25s ease, transform .25s ease;
+    
+    @include screen('desktop') {
+      width: 551px;
+      height: 257px;
+    }
+    
+    @include screen('tablet') {
+      width: 316px;
+      height: 150px;
+    }
+    
+    &.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    
+    &.is-preactive {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(100px);
+    }
+    
+    &.is-postactive {
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(-100px);
+    }
+  }
+
+  &__image {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+  
+  &__rings {
+    pointer-events: none;
+  }
+  
+  &__roundtop {
+    width: 1198px;
+    position: relative;
+  }
+  
+  &__roundmiddle {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 1198px;
+  }
+  
+  &__roundbottom {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+    width: 1178px;
+  }
+  
+  &__roundouter {
+    position: absolute;
+    left: -90px;
+    top: -24px;
+    width: 1378px;
+  }
+  
+  &__ringouter {
+    position: absolute;
+    left: -123px;
+    top: -34px;
+    width: 1444px;
+  }
+  
+  &__ringmiddle {
+    position: absolute;
+    left: -65px;
+    top: -21px;
+    width: 1328px;
+  }
+  
+  &__ringinner {
+    position: absolute;
+    left: -34px;
+    top: -20px;
+    width: 1266px;
+  }
+  
+  &__blur {
+    position: absolute;
+    left: -248px;
+    top: -188px;
+    width: 1694px;
+    transition: opacity 2.5s ease;
+    
+    &.is-anim {
+      opacity: 0;
+    }
+  }
+  
+  &__hexagon {
+    position: absolute;
+    width: 119px;
+    height: 106px;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    margin: auto;
+    transform: translateY(50%);
+  }
+  
+  &__items {
+    position: absolute;
+    left: 57px;
+    bottom: -51px;
+    width: 1084px;
+    height: 100px;
+    
+    @include screen('desktop') {
+      width: 964px;
+      left: 117px;
+    }
+  }
+  
+  &__itemhex {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  &__itemimg {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+  
+  &__item {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+    transition: opacity .5s linear, transform .5s linear, width .5s linear, height .5s linear;
+    transform: translate(-10px, -100px);
+    
+    &_active {
+      width: 113px;
+      height: 100px;
+      transform: translate(485px, 0);
+      
+      @include screen('desktop') {
+        transform: translate(426px, 0);
+      }
+    }
+    
+    &_cleft, &_cright {
+      width: 68px;
+      height: 61px;
+    }
+    
+    &_cleft {
+      transform: translate(160px, -31px);
+      
+      @include screen('desktop') {
+        transform: translate(170px, -20px);
+      }
+    }
+    
+    &_cright {
+      transform: translate(852px, -31px);
+      
+      @include screen('desktop') {
+        transform: translate(722px, -20px);
+      }
+    }
+    
+    &_left, &_right {
+      width: 34px;
+      height: 30px;
+      opacity: .75;
+    }
+    
+    &_left {
+      transform: translate(-4px, -90px);
+      
+      @include screen('desktop') {
+        transform: translate(0, -63px);
+      }
+    }
+    
+    &_right {
+      transform: translate(1047px, -90px);
+      
+      @include screen('desktop') {
+        transform: translate(928px, -63px);
+      }
+    }
+    
+    &_hidden {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    
+    &_opposite {
+      transition: opacity .25s linear, width .25s linear, height .25s linear, transform 0s linear .25s;
+    }
+  }
+  
+  &__nav {
+    position: relative;
+    text-align: center;
+    margin-top: 80px;
+    font-size: 0;
+    transition: opacity .5s ease;
+    
+    &.is-anim {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+  
+  &__arrow {
+    display: inline-block;
+    vertical-align: middle;
+    width: 50px;
+    height: 20px;
+    cursor: pointer;
+    margin: 0 30px;
+    position: relative;
+    transition: opacity $ease-main;
+    
+    @include screen('tablet') {
+      margin: 0 42px;
+    }
+    
+    &:hover {
+      opacity: .7;
+    }
+    
+    &_prev {
+      @include screen('tablet') {
+        margin-left: 0;
+      }
+    }
+    
+    &_next {
+      transform: rotate(180deg);
+      
+      @include screen('tablet') {
+        margin-right: 0;
+      }
+    }
+    
+    svg {
+      position: absolute;
+      width: 47px;
+      height: 10px;
+      fill: #fff;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      margin: auto;
+      z-index: 2;
+    }
+    
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      margin: auto;
+      width: 47px;
+      height: 2px;
+      animation-name: pulse;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+    }
+  }
+  
+  &__dots {
+    display: inline-block;
+    vertical-align: middle;
+    white-space: nowrap;
+    
+    @include screen('tablet', min) {
+      display: none;
+    }
+  }
+  
+  &__dot {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    border-radius: 100%;
+    background-color: rgba(#fff, .6);
+    transition: background-color $ease-main;
+    margin: 0 4px;
+    
+    &.is-active {
+      background-color: $color-bg;
+    }
+  }
+  
+  &__descriptions {
+    text-align: center;
+    margin-top: 8px;
+    transition: opacity .5s ease;
+    
+    &.is-anim {
+      opacity: 0;
+    }
+    
+    @include screen('desktop') {
+      margin-top: 22px;
+      padding: 0 29px;
+    }
+    
+    @include screen('tablet') {
+      margin-top: 35px;
+      padding: 0 15px;
+    }
+  }
+  
+  &__description {
+    transition: opacity .25s ease;
+    opacity: 0;
+    
+    &.is-active {
+      opacity: 1;
+    }
+    
+    &.is-hidden {
+      display: none;
+    }
+  }
+  
+  &__title {
+    color: $color-main;
+    font-size: 45px;
+    font-weight: 700;
+    
+    @include screen('desktop') {
+      font-size: 40px;
+    }
+    
+    @include screen('tablet') {
+      font-size: 32px;
+    }
+  }
+  
+  &__text {
+    font-size: 18px;
+    line-height: 1.25;
+    margin-top: 18px;
+    height: 2.5em;
+    
+    @include screen('tablet-wide') {
+      height: auto;
+    }
+    
+    @include screen('tablet') {
+      font-size: 16px;
+      line-height: 1.4;
+      margin-top: 10px;
+    }
+  }
+  
+  &__button {
+    margin-top: 22px;
+    
+    @include screen('tablet') {
+      margin-top: 24px;
+      width: 286px;
+    }
+  }
+}
+
+@keyframes pulse {
+  0%   {box-shadow: 0 0 0 0 $color-main;}
+  50%  {box-shadow: 0 0 20px 5px $color-main;}
+  100% {box-shadow: 0 0 0 0 $color-main;}
+}

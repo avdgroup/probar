@@ -1,0 +1,30 @@
+mixin products()
+  +b.products&attributes(attributes)
+    +e.H2.heading.is-anim(data-delay='200') Научный подход<br> к чистоте зубов
+    +e.flag.show-md.is-anim(data-delay='200') Новинка
+    +e.blocks
+      +e.background.is-anim(data-delay='700')
+        +e.IMG(src='assets/images/toplight.png').toplight
+        +e.IMG(src='assets/images/bottomlight.png').bottomlight
+        +e.IMG(src='assets/images/shadow.png').shadow
+      +e.block._left
+        +e.desc.is-anim(data-delay='1000')
+          +e.P.text PRO PLAN® Dental Pro Bar разработан ветеринарными врачами для поддержания здоровья полости рта вашей собаки.
+            br
+            span.show-lg  Угощайте свою собаку лакомствами с&nbsp;научно доказанной пользой!
+          +button().__button.is-anim(href='https://www.proplan.ru/dog/care/probar/' data-delay='1500') Подробнее
+        +e.image.is-anim(data-delay='500')
+          img(src='assets/images/product1.png').hide-md
+          +e.IMG(src='assets/images/toplight.png').light
+          img(src='assets/images/product1md.png').show-md
+      +e.block._right
+        +e.image.is-anim(data-delay='500')
+          img(src='assets/images/product2.png').hide-md
+          +e.IMG(src='assets/images/toplight.png').light
+          img(src='assets/images/product2md.png').show-md
+        +e.desc.is-anim(data-delay='1000')
+          +e.P.flag.hide-md.is-anim(data-delay='2000') Новинка
+          +e.P.text Теперь PRO PLAN® Dental Pro Bar доступен в новой форме – специально для маленьких собак.
+          +button().__button.is-anim(href='https://www.proplan.ru/dog/care/probar/' data-delay='1500') Подробнее
+    +e.P.bottom.is-anim(data-delay='2000') Угощайте свою собаку лакомствами с научно<br> доказанной пользой!
+        

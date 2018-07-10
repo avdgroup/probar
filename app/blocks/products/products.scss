@@ -1,0 +1,381 @@
+.products {
+  display: block;
+  text-align: center;
+  padding-top: 172px;
+  padding-bottom: 60px;
+  
+  @include screen('desktop') {
+    padding-top: 149px;
+    padding-bottom: 181px;
+  }
+  
+  @include screen('tablet-wide') {
+    padding-top: 156px;
+    padding-bottom: 126px;
+  }
+  
+  &__heading {
+    position: relative;
+    font-family: $font-third;
+    font-size: 36px;
+    text-transform: uppercase;
+    color: #fff;
+    line-height: 1;
+    z-index: 2;
+    text-shadow: 0 0 2px #000,
+    1px 1px 0 $color-main,
+    -1px 1px 0 $color-main,
+    1px -1px 0 $color-main,
+    -1px -1px 0 $color-main,
+    0px 1px 0 $color-main,
+    0px -1px 0 $color-main,
+    -1px 0px 0 $color-main,
+    1px 0px 0 $color-main,
+    2px 2px 0 $color-main,
+    -2px 2px 0 $color-main,
+    2px -2px 0 $color-main,
+    -2px -2px 0 $color-main,
+    0px 2px 0 $color-main,
+    0px -2px 0 $color-main,
+    -2px 0px 0 $color-main,
+    2px 0px 0 $color-main,
+    1px 2px 0 $color-main,
+    -1px 2px 0 $color-main,
+    1px -2px 0 $color-main,
+    -1px -2px 0 $color-main,
+    2px 1px 0 $color-main,
+    -2px 1px 0 $color-main,
+    2px -1px 0 $color-main,
+    -2px -1px 0 $color-main;
+    transition: opacity .3s ease;
+    
+    @include screen('desktop') {
+      font-family: $font-main;
+      text-shadow: none;
+      color: $color-main;
+    }
+    
+    @include screen('tablet-wide') {
+      font-size: 32px;
+      line-height: 1.25;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+    }
+  }
+  
+  &__blocks {
+    position: relative;
+    display: flex;
+    margin-top: 93px;
+    
+    @include screen('tablet-wide') {
+      display: block;
+      margin-top: 40px;
+    }
+  }
+  
+  &__background {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity .3s ease;
+    
+    @include screen('tablet-wide') {
+      display: none;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+    }
+  }
+  
+  &__toplight {
+    position: absolute;
+    left: calc(50% - 20px);
+    transform: translateX(-50%);
+    top: -59.8%;
+    width: 927px;
+    
+    @include screen('desktop') {
+      width: 889px;
+      left: 50%;
+      top: -84.9%;
+    }
+  }
+  
+  &__bottomlight {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -31.3%;
+    width: 946px;
+    
+    @include screen('desktop') {
+      width: 907px;
+    }
+  }
+  
+  &__shadow {
+    position: absolute;
+    left: calc(50% - 12px);
+    transform: translateX(-50%);
+    bottom: -2px;
+    width: 627px;
+    
+    @include screen('desktop') {
+      width: 460px;
+      left: calc(50% - 6px);
+    }
+  }
+  
+  &__block {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    width: 50%;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    
+    &_left {
+      text-align: right;
+      justify-content: flex-end;
+      padding-left: 29px;
+      
+      .products__image {
+        width: 276px;
+        left: 6px;
+        margin-left: 54px;
+        position: relative;
+        z-index: 3;
+        
+        @include screen('desktop') {
+          width: 195px;
+          left: 8px;
+          margin-left: 24px;
+        }
+        
+        @include screen('tablet-wide') {
+          order: -1;
+          width: 312px;
+          left: 0;
+          margin-left: 0;
+        }
+        
+        &.is-anim {
+          transform: translateX(50%);
+          
+          @include screen('tablet-wide') {
+            opacity: 0;
+            transform: none;
+          }
+        }
+      }
+      
+      .products__desc.is-anim {
+        opacity: 0;
+        transform: translateX(100%);
+        
+        @include screen('tablet-wide') {
+          transform: none;
+        }
+      }
+    }
+    
+    &_right {
+      text-align: left;
+      justify-content: flex-start;
+      padding-right: 29px;
+      z-index: 2;
+      
+      .products__image {
+        width: 252px;
+        left: 16px;
+        margin-right: 75px;
+        z-index: 2;
+        
+        @include screen('desktop') {
+          width: 179px;
+          margin-right: 46px;
+        }
+        
+        @include screen('tablet-wide') {
+          width: 280px;
+          left: 0;
+          margin-right: 14px;
+        }
+        
+        &.is-anim {
+          opacity: 0;
+          transform: translateX(-50%);
+          
+          @include screen('tablet-wide') {
+            transform: none;
+          }
+        }
+      }
+      
+      .products__desc.is-anim {
+        opacity: 0;
+        transform: translateX(-100%);
+        
+        @include screen('tablet-wide') {
+          transform: none;
+        }
+      }
+    }
+    
+    @include screen('tablet-wide') {
+      padding: 0 15px;
+      width: 320px;
+      margin: 0 auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    & + & {
+      @include screen('tablet-wide') {
+        margin-top: 51px;
+      }
+    }
+  }
+  
+  &__text {
+    font-size: 18px;
+    line-height: 1.35;
+    
+    @include screen('desktop') {
+      font-size: 16px;
+      line-height: 1.38;
+    }
+    
+    br {
+      @include screen('tablet-wide') {
+        display: none;
+      }
+    }
+  }
+  
+  &__image {
+    font-size: 0;
+    flex-shrink: 0;
+    position: relative;
+    transition: opacity .5s ease, transform .5s ease;
+    
+    img:not(.products__light) {
+      width: 100%;
+      position: relative;
+    }
+  }
+  
+  &__desc {
+    padding-bottom: 75px;
+    max-width: 295px;
+    position: relative;
+    z-index: 1;
+    transition: opacity .5s ease, transform .5s ease;
+    
+    @include screen('desktop') {
+      padding-bottom: 18px;
+    }
+    
+    @include screen('tablet-wide') {
+      text-align: center;
+      margin-top: 34px;
+      padding-bottom: 0;
+      position: relative;
+    }
+  }
+  
+  &__button {
+    margin-top: 49px;
+    transition: opacity .5s ease, transform .5s ease, background-color $ease-main, color $ease-main;
+    
+    @include screen('desktop') {
+      margin-top: 24px;
+    }
+    
+    @include screen('tablet-wide') {
+      width: 100%;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+      transform: translateY(100%);
+      
+      @include screen('tablet-wide') {
+        transform: none;
+      }
+    }
+  }
+  
+  &__bottom {
+    margin-top: 57px;
+    font-size: 24px;
+    line-height: 1.25;
+    position: relative;
+    transition: opacity .3s ease;
+    
+    @include screen('desktop') {
+      display: none;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+    }
+  }
+  
+  &__flag {
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #fff;
+    background-image: url(../images/flag.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-left: -60px;
+    margin-right: 25px;
+    margin-bottom: 35px;
+    padding: 6px 57px;
+    transition: opacity .5s ease, transform .5s ease;
+    
+    @include screen('desktop') {
+      margin-left: -40px;
+      margin-right: 40px;
+      margin-bottom: 24px;
+      padding: 6px 50px;
+    }
+    
+    @include screen('tablet-wide') {
+      margin: 28px 0 0;
+      text-align: center;
+      background-image: none;
+      background-color: $color-main;
+      font-size: 24px;
+    }
+    
+    &.is-anim {
+      opacity: 0;
+      transform: translateX(-100%);
+      
+      @include screen('tablet-wide') {
+        transform: none;
+      }
+    }
+  }
+  
+  &__light {
+    position: absolute;
+    width: 600px;
+    left: 50%;
+    top: calc(50% - 22px);
+    transform: translate(-50%, -50%);
+    
+    @include screen('tablet-wide', min) {
+      display: none;
+    }
+  }
+}

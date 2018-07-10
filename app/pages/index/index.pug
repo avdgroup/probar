@@ -1,0 +1,14 @@
+extends ../../layouts/default
+
+block head
+  - var pageTitle = 'Versta Project Template'
+
+block content
+  +b.index
+    +header()
+    +screen(true)#carousel
+      +carousel().__carousel
+      +e.A(href='#products').scroll-btn
+        +icon('scroll')
+    +screen()._products#products.is-hidden
+      +products()
