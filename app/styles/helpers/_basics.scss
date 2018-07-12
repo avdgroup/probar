@@ -49,13 +49,16 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden; // Убираем горизонтальный скролл
+  overflow: hidden; // Убираем горизонтальный скролл
   width: 100%;
-  min-height: 100%;
-}
-
-html {
-  overflow-y: scroll;
+  height: 100%;
+  
+  &.is-free {
+    height: auto;
+    min-height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
 }
 
 body {

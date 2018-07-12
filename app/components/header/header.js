@@ -13,17 +13,6 @@ export default function header() {
     }
   });
 
-  $(document).on('click', '.header__side-logo', (e) => {
-    const wHeight = $(window).height();
-    const scrlTop = $('html, body').scrollTop();
-    if (scrlTop >= wHeight) {
-      e.preventDefault();
-      $('body, html').stop().animate({
-        scrollTop: 0,
-      }, 1000, 'swing');
-    }
-  });
-
   $(document).on('click', '.header__menu', (e) => {
     e.stopPropagation();
   });

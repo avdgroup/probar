@@ -3,7 +3,7 @@ import objectFitImages from 'object-fit-images';
 import './globalOptions';
 import anchor from '../blocks/js-functions/anchor';
 import carousel from '../blocks/carousel/carousel';
-import products from '../blocks/products/products';
+// import products from '../blocks/products/products';
 import header from '../components/header/header';
 import screen from '../components/screen/screen';
 
@@ -14,7 +14,7 @@ $(() => {
   objectFitImages();
   anchor();
   carousel();
-  products();
+  // products();
   header();
   screen();
 });

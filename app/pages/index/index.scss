@@ -3,4 +3,10 @@
   flex-wrap: wrap;
   position: relative;
   overflow: hidden;
+  height: 200%;
+  transition: transform 1s ease;
+  
+  &.is-down {
+    transform: translate3d(0, -50%, 0);
+  }
 }

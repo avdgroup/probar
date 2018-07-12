@@ -1,10 +1,12 @@
 const $ = window.$;
 
 export default function carousel() {
-  let canScrollChange = true;
   let scrollChange = false;
+  let canScrollChange = true;
   let clickChange = false;
-  let screenChange = false;
+  let screenChangeUp = false;
+  let screenChangeDown = false;
+  const ie11 = /rv:11\.0/.test(navigator.userAgent.toLowerCase());
 
   // анимация гексагонов
   function startHex() {
@@ -132,10 +134,13 @@ export default function carousel() {
       forwardDiff = targetIndex + (count - currentIndex);
       backDiff = currentIndex - targetIndex;
     }
-    if (forwardDiff < backDiff) {
+
+    if (forwardDiff <= backDiff) {
       direction = 'forward';
-    } else {
+    } else if (forwardDiff > backDiff) {
       direction = 'back';
+    } else {
+      direction = 'none';
     }
 
     const activeScene = carouselEl.find('.carousel__scene.is-active');
@@ -176,7 +181,7 @@ export default function carousel() {
 
       if (direction === 'forward') {
         carouselEl.find('.carousel__item_left').addClass('carousel__item_opposite carousel__item_hidden');
-      } else {
+      } else if (direction === 'back') {
         carouselEl.find('.carousel__item_right').addClass('carousel__item_opposite carousel__item_hidden');
       }
 
@@ -224,7 +229,7 @@ export default function carousel() {
           $('.screen__scroll-btn').addClass('is-active');
 
           if (targetIndex === count) {
-            screenChange = true;
+            screenChangeDown = true;
             canScrollChange = false;
           }
         }, 500);
@@ -262,25 +267,39 @@ export default function carousel() {
     }
     ev.returnValue = false;
 
-    if (scrollChange && canScrollChange) {
-      if (/rv:11\.0/.test(navigator.userAgent.toLowerCase()) && ev.wheelDelta < 0) {
+    if ((ie11 && ev.wheelDelta < 0) || (ev.deltaY && ev.deltaY > 0)) { // scroll down
+      if (scrollChange && canScrollChange) {
+        const count = parseInt($('.carousel').attr('data-count'), 10);
         const currentIndex = parseInt($('.carousel').attr('data-current'), 10);
-        const nextIndex = currentIndex + 1;
-        changeItem(nextIndex);
-      } else if (ev.deltaY && ev.deltaY > 0) {
-        const currentIndex = parseInt($('.carousel').attr('data-current'), 10);
-        const nextIndex = currentIndex + 1;
-        changeItem(nextIndex);
+        if (currentIndex < count) {
+          const nextIndex = currentIndex + 1;
+          changeItem(nextIndex);
+        }
+      }
+
+      if (screenChangeDown) {
+        $('.screen__scroll-btn').click();
       }
     }
 
-    if (screenChange) {
-      if (/rv:11\.0/.test(navigator.userAgent.toLowerCase()) && ev.wheelDelta < 0) {
-        $('.screen__scroll-btn').click();
-        screenChange = false;
-      } else if (ev.deltaY && ev.deltaY > 0) {
-        $('.screen__scroll-btn').click();
-        screenChange = false;
+    if ((ie11 && ev.wheelDelta > 0) || (ev.deltaY && ev.deltaY < 0)) { // scroll up
+      if (scrollChange && canScrollChange) {
+        const currentIndex = parseInt($('.carousel').attr('data-current'), 10);
+        if (currentIndex > 1) {
+          const nextIndex = currentIndex - 1;
+          changeItem(nextIndex);
+        }
+      }
+
+      if (screenChangeUp) {
+        $('.header__side-logo').click();
+        canScrollChange = true;
+        const count = $('.carousel').attr('data-count');
+        const current = $('.carousel').attr('data-current');
+        if (current === count) {
+          screenChangeDown = true;
+        }
+        screenChangeUp = false;
       }
     }
   }
@@ -313,20 +332,52 @@ export default function carousel() {
 
   disableScroll();
 
-  $(document).on('click', '.screen__scroll-btn', function (e) {
+  $(document).on('click', '.screen__scroll-btn', (e) => {
     e.preventDefault();
-    $('.screen.is-hidden').removeClass('is-hidden');
-    enableScroll();
-    const target = $($(this).attr('href'));
-    if (target.length > 0) {
-      $('body, html').stop().animate({
-        scrollTop: target.offset().top,
-      }, 1000, 'swing');
+    $('.index').addClass('is-down');
+    $('.carousel').attr('data-screen', '2');
+    screenChangeDown = false;
+    screenChangeUp = true;
+    canScrollChange = false;
+    $('.products').find('.is-anim').each(function () {
+      const $this = $(this);
+      let delay = parseInt($this.attr('data-delay'), 10);
+      if ($(window).width() <= 1020) {
+        delay = 0;
+      }
+      setTimeout(() => {
+        $this.removeClass('is-anim');
+      }, delay);
+    });
+  });
+
+  $(document).on('click', '.header__side-logo', (e) => {
+    const screen = $('.carousel').attr('data-screen');
+    if (screen === '2') {
+      e.preventDefault();
+      $('.index').removeClass('is-down');
+      $('.carousel').attr('data-screen', '1');
     }
   });
 
-  $(document).on('touchend', '.carousel__arrow, .carousel__dot', () => {
-    $('.screen.is-hidden').removeClass('is-hidden');
+  $(document).on('touchstart', () => {
+    $('html, body').addClass('is-free');
+    $('.products').find('.is-anim').removeClass('is-anim');
     enableScroll();
+  });
+
+  let timeout;
+  const idletime = 7; // seconds
+
+  $(document).on('mousemove wheel', () => {
+    clearTimeout(timeout);
+
+    const activeScreen = $('.carousel').attr('data-screen');
+
+    if (activeScreen === '1') {
+      timeout = setTimeout(() => {
+        changeItem(1);
+      }, 1000 * idletime);
+    }
   });
 }

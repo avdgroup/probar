@@ -377,8 +377,10 @@
   
   &__descriptions {
     text-align: center;
+    margin: auto;
     margin-top: 8px;
     transition: opacity .5s ease;
+    box-sizing: border-box;
     
     &.is-anim {
       opacity: 0;
@@ -387,11 +389,17 @@
     @include screen('desktop') {
       margin-top: 22px;
       padding: 0 29px;
+      max-width: 1020px;
+    }
+    
+    @inlude screen('tablet-wide') {
+      max-width: 760px;
     }
     
     @include screen('tablet') {
       margin-top: 35px;
       padding: 0 15px;
+      max-width: 320px;
     }
   }
   

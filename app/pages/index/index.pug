@@ -6,9 +6,7 @@ block head
 block content
   +b.index
     +header()
-    +screen(true)#carousel.is-visible
+    +screen(true)._carousel#carousel
       +carousel().__carousel
-      +e.A(href='#products').scroll-btn
-        +icon('scroll')
-    +screen()._products#products.is-hidden
-      +products()
+    +screen()._products#products
+      +products().__products

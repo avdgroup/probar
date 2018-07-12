@@ -1,13 +1,24 @@
 .screen {
-  display: flex;
-  align-items: center;
   position: relative;
-  overflow: hidden;
-  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  height: 50%;
   width: 100%;
   
   @include screen('tablet-wide') {
     min-height: 0;
+  }
+  
+  &__wrapper {
+    display: table;
+    position: relative;
+    min-height: 100%;
+    width: 100%;
+  }
+  
+  &__container {
+    display: table-cell;
+    vertical-align: middle;
   }
   
   &__gradient {
@@ -36,6 +47,9 @@
   }
   
   &__carousel {
+    max-width: 1440px;
+    width: 100%;
+    margin: auto;
     padding-top: 198px;
     padding-bottom: 72px;
     position: relative;
@@ -48,6 +62,12 @@
     @include screen('tablet') {
       padding-top: 61px;
     }
+  }
+  
+  &__products {
+    width: 100%;
+    max-width: 1440px;
+    margin: auto;
   }
   
   &__scroll-btn {
@@ -80,11 +100,29 @@
       fill: $color-orange;
     }
   }
-
-  &.is-hidden {
-    position: absolute;
-    left: 0;
-    top: 100%;
+  
+  &_carousel {
+    
+    &.is-hidden {
+      position: absolute;
+      left: 0;
+      bottom: 100%;
+    }
+    
+    .screen__wrapper {
+      @media only screen and (max-width: 1198px) {
+        margin: 0 calc((100% - 1198px)/2);
+      }
+    }
+  }
+  
+  &_products {
+    
+    &.is-hidden {
+      position: absolute;
+      left: 0;
+      top: 100%;
+    }
   }
 }
 
