@@ -3,7 +3,7 @@ const $ = window.$;
 export default function carousel() {
   let canScrollChange = true;
   let scrollChange = false;
-  let arrowChange = false;
+  let clickChange = false;
   let screenChange = false;
 
   // анимация гексагонов
@@ -92,7 +92,7 @@ export default function carousel() {
 
     setTimeout(() => {
       scrollChange = true;
-      arrowChange = true;
+      clickChange = true;
     }, animationDuration);
   }
 
@@ -114,7 +114,7 @@ export default function carousel() {
   // переключение слайдов
   function changeItem(targetIndex) {
     scrollChange = false;
-    arrowChange = false;
+    clickChange = false;
 
     const carouselEl = $('.carousel');
     const count = parseInt(carouselEl.attr('data-count'), 10);
@@ -243,18 +243,12 @@ export default function carousel() {
     checkIndex();
   }
 
-  $(document).on('click', '.carousel__arrow', function (e) {
+  $(document).on('click', '.carousel__arrow, .carousel__dot, .carousel__item', function (e) {
     e.preventDefault();
-    if (arrowChange) {
+    if (clickChange) {
       const targetIndex = parseInt($(this).attr('data-index'), 10);
       changeItem(targetIndex);
     }
-  });
-
-  $(document).on('click', '.carousel__dot', function (e) {
-    e.preventDefault();
-    const targetIndex = parseInt($(this).attr('data-index'), 10);
-    changeItem(targetIndex);
   });
 
   // left: 37, up: 38, right: 39, down: 40,

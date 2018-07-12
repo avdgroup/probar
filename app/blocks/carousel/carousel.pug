@@ -1,17 +1,17 @@
 mixin carousel()
-  +b.carousel(data-count='5' data-start='1' data-current='1')&attributes(attributes)
-    +e.platform.is-anim(data-delay='200')
+  +b.carousel(data-count='5' data-start='1' data-current='1' data-screen='1')&attributes(attributes)
+    +e.platform.is-anim(data-delay='0')
       +e.rings
         +e.IMG(src='assets/images/roundouter.svg').roundouter
         +e.IMG(src='assets/images/ringouter.png').ringouter
         +e.IMG(src='assets/images/ringinner.png').ringinner
         +e.IMG(src='assets/images/ringmiddle.png').ringmiddle
-        +e.IMG(src='assets/images/blur.png' data-delay='1200').blur.is-anim
+        +e.IMG(src='assets/images/blur.png' data-delay='500').blur.is-anim
         +e.IMG(src='assets/images/roundbottom.svg').roundbottom
         +e.IMG(src='assets/images/hexagon-w.svg').hexagon
         +e.IMG(src='assets/images/roundmiddle.svg').roundmiddle
         +e.IMG(src='assets/images/roundtop.svg').roundtop
-      +e.images.is-anim(data-delay='3700' data-animation)
+      +e.images.is-anim(data-delay='3000' data-animation)
         +e.scene(data-index='1' data-count='250' data-duration='2000')._sc1.is-active
           - for (var i = 0; i <= 250; i++)
             if i < 10
@@ -53,22 +53,22 @@ mixin carousel()
             else
               +e.IMG(src='assets/images/scenes/sc05/sc05_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
       +e.items
-        +e.item.is-orderanim(data-index='4' data-delay='1200')
+        +e.item.is-orderanim(data-index='4' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
-          +e.IMG(src='assets/images/item4.svg').itemimg
-        +e.item.is-orderanim(data-index='5' data-delay='1200')
+          +e.IMG(src='assets/images/item4.png').itemimg._png
+        +e.item.is-orderanim(data-index='5' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
           +e.IMG(src='assets/images/item5.svg').itemimg
-        +e.item.is-orderanim(data-index='1' data-delay='1200')
+        +e.item.is-orderanim(data-index='1' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
           +e.IMG(src='assets/images/item1.svg').itemimg
-        +e.item.is-orderanim(data-index='2' data-delay='1200')
+        +e.item.is-orderanim(data-index='2' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
           +e.IMG(src='assets/images/item2.svg').itemimg
-        +e.item.is-orderanim(data-index='3' data-delay='1200')
+        +e.item.is-orderanim(data-index='3' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
           +e.IMG(src='assets/images/item3.svg').itemimg
-    +e.nav.is-anim(data-delay='3700')
+    +e.nav.is-anim(data-delay='3000')
       +e.arrow._prev(data-index='5')
         +icon('arrow')
       +e.dots
@@ -79,10 +79,10 @@ mixin carousel()
         +e.dot(data-index='5')
       +e.arrow._next(data-index='2')
         +icon('arrow')
-    +e.descriptions.is-anim(data-delay='3700')
+    +e.descriptions.is-anim(data-delay='3000')
       +e.description(data-index='1').is-active
-        +e.P.title Способствует
-        +e.P.text снижению образования зубного камня,<br> благодаря механическому эффекту.
+        +e.P.title Снижает образование зубного камня,
+        +e.P.text благодаря механическому эффекту.
         +button().__button(href='https://www.proplan.ru/dog/care/probar/') Подробнее
       +e.description(data-index='2').is-hidden
         +e.P.title Мягко массирует дёсны,
@@ -93,10 +93,10 @@ mixin carousel()
         +e.P.text оставаться крепкими, благодаря сбалансированному<br> содержанию минеральных веществ.
         +button().__button(href='https://www.proplan.ru/dog/care/probar/') Подробнее
       +e.description(data-index='4').is-hidden
-        +e.P.title Поддерживает
-        +e.P.text хорошее пищеварение, благодаря рису - основному<br> источнику углеводов.
+        +e.P.title Поддерживает хорошее пищеварение,
+        +e.P.text благодаря рису - основному<br> источнику углеводов.
         +button().__button(href='https://www.proplan.ru/dog/care/probar/') Подробнее
       +e.description(data-index='5').is-hidden
-        +e.P.title Подходит
-        +e.P.text для ежедневного использования
+        +e.P.title Подходит для ежедневного применения,
+        +e.P.text не содержит искусственных<br> красителей и ароматизаторов
         +button().__button(href='https://www.proplan.ru/dog/care/probar/') Подробнее
