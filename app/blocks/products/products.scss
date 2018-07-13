@@ -146,16 +146,16 @@
       padding-left: 29px;
       
       .products__image {
-        width: 276px;
-        left: 6px;
-        margin-left: 54px;
+        width: 339px;
+        left: 14px;
+        margin-left: -10px;
         position: relative;
         z-index: 3;
         
         @include screen('desktop') {
-          width: 195px;
-          left: 8px;
-          margin-left: 24px;
+          width: 239px;
+          left: 11px;
+          margin-left: -21px;
         }
         
         @include screen('tablet-wide') {
@@ -192,14 +192,15 @@
       z-index: 2;
       
       .products__image {
-        width: 252px;
-        left: 16px;
-        margin-right: 75px;
+        width: 288px;
+        left: 14px;
+        margin-right: 42px;
         z-index: 2;
         
         @include screen('desktop') {
-          width: 179px;
-          margin-right: 46px;
+          width: 203px;
+          left: 11px;
+          margin-right: 21px;
         }
         
         @include screen('tablet-wide') {
