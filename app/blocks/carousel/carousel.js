@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 const $ = window.$;
 
 export default function carousel() {
   let scrollChange = false;
-  let canScrollChange = true;
+  let scrollChangeForward = true;
+  let scrollChangeBack = true;
   let clickChange = false;
   let screenChangeUp = false;
   let screenChangeDown = false;
@@ -53,6 +55,8 @@ export default function carousel() {
   }
 
   // псевдо 3d анимация
+  let sceneAnimation;
+
   function startAnim() {
     const activeScene = $('.carousel__scene.is-active');
     const totalFrames = parseInt(activeScene.attr('data-count'), 10);
@@ -86,16 +90,16 @@ export default function carousel() {
         }
       }
 
-      requestAnimationFrame(step);
+      sceneAnimation = requestAnimationFrame(step);
     }
 
     // start the animation
-    requestAnimationFrame(step);
+    sceneAnimation = requestAnimationFrame(step);
 
     setTimeout(() => {
       scrollChange = true;
       clickChange = true;
-    }, animationDuration);
+    }, 250);
   }
 
   // первичная анимация элементов
@@ -117,6 +121,7 @@ export default function carousel() {
   function changeItem(targetIndex) {
     scrollChange = false;
     clickChange = false;
+    cancelAnimationFrame(sceneAnimation);
 
     const carouselEl = $('.carousel');
     const count = parseInt(carouselEl.attr('data-count'), 10);
@@ -214,6 +219,7 @@ export default function carousel() {
     }
 
     function checkIndex() {
+      screenChangeDown = false;
       if (currentIndex === targetIndex) {
         setTimeout(() => {
           activeScene.removeClass('is-postactive').addClass('is-hidden');
@@ -229,10 +235,17 @@ export default function carousel() {
           $('.screen__scroll-btn').addClass('is-active');
 
           if (targetIndex === count) {
-            screenChangeDown = true;
-            canScrollChange = false;
+            scrollChangeForward = false;
+          } else {
+            scrollChangeForward = true;
           }
         }, 500);
+
+        setTimeout(() => {
+          if (targetIndex === count) {
+            screenChangeDown = true;
+          }
+        }, 750);
 
         changeIcons();
       } else {
@@ -268,13 +281,11 @@ export default function carousel() {
     ev.returnValue = false;
 
     if ((ie11 && ev.wheelDelta < 0) || (ev.deltaY && ev.deltaY > 0)) { // scroll down
-      if (scrollChange && canScrollChange) {
+      if (scrollChange && scrollChangeForward) {
         const count = parseInt($('.carousel').attr('data-count'), 10);
         const currentIndex = parseInt($('.carousel').attr('data-current'), 10);
-        if (currentIndex < count) {
-          const nextIndex = currentIndex + 1;
-          changeItem(nextIndex);
-        }
+        const nextIndex = currentIndex + 1;
+        changeItem(nextIndex);
       }
 
       if (screenChangeDown) {
@@ -283,23 +294,21 @@ export default function carousel() {
     }
 
     if ((ie11 && ev.wheelDelta > 0) || (ev.deltaY && ev.deltaY < 0)) { // scroll up
-      if (scrollChange && canScrollChange) {
+      if (scrollChange && scrollChangeBack) {
+        const count = parseInt($('.carousel').attr('data-count'), 10);
         const currentIndex = parseInt($('.carousel').attr('data-current'), 10);
+        let nextIndex;
         if (currentIndex > 1) {
-          const nextIndex = currentIndex - 1;
-          changeItem(nextIndex);
+          nextIndex = currentIndex - 1;
+        } else if (currentIndex === 1) {
+          nextIndex = count;
         }
+        scrollChangeForward = true;
+        changeItem(nextIndex);
       }
 
       if (screenChangeUp) {
         $('.header__side-logo').click();
-        canScrollChange = true;
-        const count = $('.carousel').attr('data-count');
-        const current = $('.carousel').attr('data-current');
-        if (current === count) {
-          screenChangeDown = true;
-        }
-        screenChangeUp = false;
       }
     }
   }
@@ -337,8 +346,10 @@ export default function carousel() {
     $('.index').addClass('is-down');
     $('.carousel').attr('data-screen', '2');
     screenChangeDown = false;
-    screenChangeUp = true;
-    canScrollChange = false;
+    scrollChangeBack = false;
+    setTimeout(() => {
+      screenChangeUp = true;
+    }, 1000);
     $('.products').find('.is-anim').each(function () {
       const $this = $(this);
       let delay = parseInt($this.attr('data-delay'), 10);
@@ -352,12 +363,23 @@ export default function carousel() {
   });
 
   $(document).on('click', '.header__side-logo', (e) => {
+    const count = $('.carousel').attr('data-count');
+    const current = $('.carousel').attr('data-current');
     const screen = $('.carousel').attr('data-screen');
     if (screen === '2') {
       e.preventDefault();
       $('.index').removeClass('is-down');
       $('.carousel').attr('data-screen', '1');
     }
+    screenChangeUp = false;
+    setTimeout(() => {
+      if (current === count) {
+        screenChangeDown = true;
+      } else {
+        scrollChangeForward = true;
+      }
+      scrollChangeBack = true;
+    }, 1000);
   });
 
   $(document).on('touchstart', () => {
@@ -373,11 +395,13 @@ export default function carousel() {
     clearTimeout(timeout);
 
     const activeScreen = $('.carousel').attr('data-screen');
+    const activeScene = $('.carousel').attr('data-current');
 
-    if (activeScreen === '1') {
+    if (activeScreen === '1' && activeScene !== '1') {
       timeout = setTimeout(() => {
         changeItem(1);
       }, 1000 * idletime);
     }
   });
 }
+/* eslint-enable no-unused-vars */
