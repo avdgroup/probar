@@ -407,6 +407,7 @@ export default function carousel() {
 
   $(document).on('touchstart', () => {
     $('html, body').addClass('is-free');
+    $('.index').removeClass('is-down');
     $('.products').find('.is-anim').removeClass('is-anim');
     enableScroll();
   });
