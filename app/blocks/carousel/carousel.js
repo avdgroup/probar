@@ -102,6 +102,28 @@ export default function carousel() {
     }, 250);
   }
 
+  function repeatAnimation() {
+    let timeout;
+    const idletime = 7; // seconds
+
+    const firstTimeout = setInterval(() => {
+      $('.carousel__arrow_next').click();
+    }, 1000 * idletime);
+
+    $(document).on('mousemove wheel', () => {
+      clearInterval(firstTimeout);
+      clearInterval(timeout);
+
+      const activeScreen = $('.carousel').attr('data-screen');
+
+      if (activeScreen === '1') {
+        timeout = setInterval(() => {
+          $('.carousel__arrow_next').click();
+        }, 1000 * idletime);
+      }
+    });
+  }
+
   // первичная анимация элементов
   $(window).on('load', () => {
     $('.carousel .is-anim').each(function () {
@@ -111,6 +133,7 @@ export default function carousel() {
         $this.removeClass('is-anim');
         if ($this.attr('data-animation')) {
           startAnim();
+          repeatAnimation();
         }
       }, delay);
     });
@@ -386,22 +409,6 @@ export default function carousel() {
     $('html, body').addClass('is-free');
     $('.products').find('.is-anim').removeClass('is-anim');
     enableScroll();
-  });
-
-  let timeout;
-  const idletime = 7; // seconds
-
-  $(document).on('mousemove wheel', () => {
-    clearTimeout(timeout);
-
-    const activeScreen = $('.carousel').attr('data-screen');
-    const activeScene = $('.carousel').attr('data-current');
-
-    if (activeScreen === '1' && activeScene !== '1') {
-      timeout = setTimeout(() => {
-        changeItem(1);
-      }, 1000 * idletime);
-    }
   });
 }
 /* eslint-enable no-unused-vars */
