@@ -12,46 +12,46 @@ mixin carousel()
         +e.IMG(src='assets/images/roundmiddle.svg').roundmiddle
         +e.IMG(src='assets/images/roundtop.svg').roundtop
       +e.images.is-anim(data-delay='3000' data-animation)
-        +e.scene(data-index='1' data-count='250' data-duration='2000')._sc1.is-active
-          - for (var i = 0; i <= 250; i++)
+        +e.scene(data-index='1' data-count='212' data-duration='2000')._sc1.is-active
+          - for (var i = 0; i <= 212; i++)
             if i < 10
-              +e.IMG(src='assets/images/scenes/sc01/sc01_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc01/scene01_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else if i < 100
-              +e.IMG(src='assets/images/scenes/sc01/sc01_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc01/scene01_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else
-              +e.IMG(src='assets/images/scenes/sc01/sc01_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc01/scene01_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
         +e.scene(data-index='2' data-count='150' data-duration='2000')._sc2.is-hidden
           - for (var i = 0; i <= 150; i++)
             if i < 10
-              +e.IMG(src='assets/images/scenes/sc02/sc02_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc02/scene02_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else if i < 100
-              +e.IMG(src='assets/images/scenes/sc02/sc02_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc02/scene02_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else
-              +e.IMG(src='assets/images/scenes/sc02/sc02_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc02/scene02_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
         +e.scene(data-index='3' data-count='150' data-duration='2000')._sc3.is-hidden
           - for (var i = 0; i <= 150; i++)
             if i < 10
-              +e.IMG(src='assets/images/scenes/sc03/sc03_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc03/scene03_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else if i < 100
-              +e.IMG(src='assets/images/scenes/sc03/sc03_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc03/scene03_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else
-              +e.IMG(src='assets/images/scenes/sc03/sc03_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc03/scene03_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
         +e.scene(data-index='4' data-count='150' data-duration='2000')._sc4.is-hidden
           - for (var i = 0; i <= 150; i++)
             if i < 10
-              +e.IMG(src='assets/images/scenes/sc04/sc04_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc04/scene04_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else if i < 100
-              +e.IMG(src='assets/images/scenes/sc04/sc04_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc04/scene04_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else
-              +e.IMG(src='assets/images/scenes/sc04/sc04_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
-        +e.scene(data-index='5' data-count='109' data-duration='2000')._sc5.is-hidden
-          - for (var i = 0; i <= 109; i++)
+              +e.IMG(src='assets/images/scenes/sc04/scene04_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+        +e.scene(data-index='5' data-count='150' data-duration='2000')._sc5.is-hidden
+          - for (var i = 0; i <= 150; i++)
             if i < 10
-              +e.IMG(src='assets/images/scenes/sc05/sc05_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc05/scene05_0000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else if i < 100
-              +e.IMG(src='assets/images/scenes/sc05/sc05_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc05/scene05_000'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
             else
-              +e.IMG(src='assets/images/scenes/sc05/sc05_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
+              +e.IMG(src='assets/images/scenes/sc05/scene05_00'+i+'.png' class='__image bar-animation bar-animation-'+(i+1))
       +e.items
         +e.item.is-orderanim(data-index='4' data-delay='500')
           +e.IMG(src='assets/images/hexagon-b.svg').itemhex
